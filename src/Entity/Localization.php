@@ -27,12 +27,12 @@ class Localization
     #[ORM\Column]
     private ?float $longtitude = null;
 
-    #[ORM\OneToMany(mappedBy: 'localization', targetEntity: Measurment::class)]
-    private Collection $measurments;
+    #[ORM\OneToMany(mappedBy: 'localization', targetEntity: Measurement::class)]
+    private Collection $measurements;
 
     public function __construct()
     {
-        $this->measurments = new ArrayCollection();
+        $this->measurements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -89,29 +89,29 @@ class Localization
     }
 
     /**
-     * @return Collection<int, Measurment>
+     * @return Collection<int, Measurement>
      */
-    public function getMeasurments(): Collection
+    public function getMeasurements(): Collection
     {
-        return $this->measurments;
+        return $this->measurements;
     }
 
-    public function addMeasurment(Measurment $measurment): self
+    public function addMeasurement(Measurement $measurement): self
     {
-        if (!$this->measurments->contains($measurment)) {
-            $this->measurments->add($measurment);
-            $measurment->setLocalization($this);
+        if (!$this->measurements->contains($measurement)) {
+            $this->measurements->add($measurement);
+            $measurement->setLocalization($this);
         }
 
         return $this;
     }
 
-    public function removeMeasurment(Measurment $measurment): self
+    public function removeMeasurement(Measurement $measurement): self
     {
-        if ($this->measurments->removeElement($measurment)) {
+        if ($this->measurements->removeElement($measurement)) {
             // set the owning side to null (unless already changed)
-            if ($measurment->getLocalization() === $this) {
-                $measurment->setLocalization(null);
+            if ($measurement->getLocalization() === $this) {
+                $measurement->setLocalization(null);
             }
         }
 

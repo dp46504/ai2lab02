@@ -1,3 +1,14 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+weather_in_city:
+  path: /weather/{city}
+  controller: App\Controller\WeatherController:cityAction
+  requirements:
+    city: \d+
+
+weather_in_country_city:
+  path: /weather/{cityName}
+  controller: App\Controller\WeatherController:cityActionByCity
+  requirements:
+    cityName: "[a-zA-Z]{2,15}"

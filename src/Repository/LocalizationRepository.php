@@ -39,6 +39,16 @@ class LocalizationRepository extends ServiceEntityRepository
         }
     }
 
+    public function findCityByCityName(String $cityName) {
+        $qb = $this->createQueryBuilder('l');
+
+        $qb->where('l.name = :localizationName')
+        ->setParameter('localizationName', $cityName);
+        $query = $qb->getQuery();
+        $result = $query->getSingleResult();
+        return $result;
+    }
+
 //    /**
 //     * @return Localization[] Returns an array of Localization objects
 //     */
